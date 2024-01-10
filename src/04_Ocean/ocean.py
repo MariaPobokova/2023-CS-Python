@@ -75,4 +75,3 @@ if __name__ == "__main__":
     ocean = Ocean(init_state=init_state)
     for _ in range(n_quantums):
         ocean = ocean.gen_next_quantum()
-    
