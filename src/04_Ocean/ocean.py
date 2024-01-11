@@ -27,9 +27,9 @@ class Ocean:
                 else:
                     n_fish = 0
                     n_shrimp = 0
-                    neighbours = [
+                    neighbors = [
                         (i - 1, j - 1),
-                        (i -  1, j),
+                        (i - 1, j),
                         (i - 1, j + 1),
                         (i, j - 1),
                         (i, j + 1),
@@ -37,32 +37,32 @@ class Ocean:
                         (i + 1, j),
                         (i + 1, j + 1),
                     ]
-                    for ni, nj in neighbours:
+                    for ni, nj in neighbors:
                         if ni < 0 or nj < 0 or ni >= len(self.state) or nj >= len(self.state[i]):
-                            continue 
+                            continue
                         if self.state[ni][nj] == fish:
                             n_fish += 1
                         elif self.state[ni][nj] == shrimp:
                             n_shrimp += 1
                     if self.state[i][j] == fish:
-                        if n_fish < 2 or n_fish > 3:
-                            new.row.append(0)
+                        if n_fish < 2 or n_fish > 3: 
+                            new_row.append(0)
                         else:
-                            new.row.append(2)
+                            new_row.append(2)
                     elif self.state[i][j] == shrimp:
-                        if n_shrimp < 2 or n_shrimp > 3:
-                            new.row.append(0)
+                        if n_shrimp < 2 or n_shrimp > 3:  
+                            new_row.append(0)
                         else:
-                            new.row.append(3)
+                            new_row.append(3)
                     elif n_fish == fish and n_shrimp == shrimp:
-                        new.row.append(2)
-                    elif n_fish == 3:
-                        new.row.append(2)
+                        new_row.append(2)
+                    elif n_fish == 3: 
+                        new_row.append(2)
                     else:
-                        new.row.append(0)
+                        new_row.append(0)
             new_state.append(new_row)
-
-        return Ocean(init_state=new_state) 
+        
+        return Ocean(init_state=new_state)
 
 if __name__ == "__main__":
     n_quantums = int(sys.stdin.readline())
