@@ -1,0 +1,60 @@
+'''
+Number Guessing Game
+----------------------------------------
+'''
+
+import random 
+
+def show_score(attempts_list):
+        print(f'Лучший результат:'
+              f'{attempts_list} попыток')
+
+def start_game():
+    attempts =  0
+    rand_num = random.randint(1, 100)
+    attempts_list = []
+
+    print('Здравствуй, Друг! Добро пожаловать в игру "Угадай число"!')
+    player_name = input('Как тебя зовут? ')
+    wanna_play = input(
+        f'Привет, {player_name}, ты хочешь сыграть? (Введи: да/нет) ')
+    
+    if wanna_play == 'Нет':
+        print('Хорошо, спасибо!')
+        exit()
+    else:
+        show_score(attempts_list)
+
+    while wanna_play == 'Да':
+        try:
+            guess = int(input('Выберите число от 1 до 100: '))
+            if guess < 1 or guess > 100:
+                raise ValueError('Пожалуйста, выберите число из диапазона.')
+            
+            attempts += 1
+
+            if guess == rand_num:
+                attempts_list.append(attempts)
+                print('Здорово! Ты угадал!')
+                print(f'Это заняло у тебя {attempts} попыток')
+                wanna_play = input(
+                    'Сыграем снова? (Введи: Да/Нет) ')
+                if wanna_play.lower() == 'Нет': 
+                    print('Хорошо! До встречи, {player_name}!')
+                    break
+                else:
+                    attempts = 0
+                    rand_num = random.randint(1,100)
+                    show_score(attempts_list)
+                    continue 
+            else:
+                if guess > rand_num:
+                    print('Меньше')
+                elif guess < rand_num:
+                    print('Больше')
+        
+        except ValueError as err:
+            print('О нет! Что-то здесь не так... Попробуй снова.')               
+            print(err)
+if __name__ == '__main__':
+    start_game()
