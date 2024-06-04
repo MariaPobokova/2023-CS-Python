@@ -1,0 +1,35 @@
+import turtle
+
+turtle.hideturtle()
+turtle.speed(0)
+turtle.tracer(0)
+turtle.penup()
+turtle.setposition(-380,300)
+turtle.pendown()
+turtle.pensize(2)
+
+axiom = "F+F+F+F"
+axmTemp = ""
+itr = 3
+
+dl = 20
+angl = 90
+
+translate={"+":"+", "-":"-", "F":"F+F-F-F+F", "f":"fff"}
+
+for k in range(itr):
+    for ch in axiom:
+        axmTemp+=translate[ch]
+    axiom = axmTemp
+    axmTemp = ""
+    
+for ch in axiom:
+    if ch == "+":
+        turtle.right(angl)
+    elif ch == "-":
+        turtle.left(angl)
+    else:
+        turtle.forward(dl)
+
+turtle.update()
+turtle.mainloop()
